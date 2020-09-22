@@ -10,7 +10,6 @@ header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, X-Requested-With");
 
 $appRouter = new AltoRouter();
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 $appRouter->map('POST', '/', 'Controllers\InitController#index', 'init-app');
