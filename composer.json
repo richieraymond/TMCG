@@ -12,7 +12,7 @@
             "Models\\": "database/models",
             "Migrations\\": "database/migrations",
             "Seeders\\": "database/seeders",
-            "UnitTests\\": "unittests"
+            "UnitTests\\":"unittests"
         }
     },
     "require-dev": {
