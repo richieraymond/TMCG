@@ -33,17 +33,17 @@ class BaseController
     /**
      * Make database connection available to all controllers
      */
-    protected function getConnection()
+    public function getConnection()
     {
         try {
             $connection = (new InitDatabase())->establishCOnnection();
             if ($connection != null) {
                 return $connection;
             } else {
-                echo "Connection Failed";
+                return $this->sendResponse(false, "Failed to estbalish connection", 400);
             }
         } catch (Exception $ex) {
-            echo $this->sendResponse(
+            return $this->sendResponse(
                 false,
                 'Failed to init db',
                 400

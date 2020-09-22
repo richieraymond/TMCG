@@ -15,14 +15,9 @@ $dotenv->load();
 
 $appRouter->map('POST', '/', 'Controllers\InitController#index', 'init-app');
 $appRouter->map('GET', '/get-staff', 'Controllers\StaffController#getAll', 'get-staff');
+$appRouter->map('GET', '/get-similar-staff', 'Controllers\StaffController#getSimilarStaff', 'get-similar-staff');
 
 $match = $appRouter->match();
-
-// if (is_array($match) && is_callable($match['target'])) {
-//     call_user_func_array($match['target'], $match['params']);
-// } else {
-//     header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
-// }
 
 list($controller, $action) = explode('#', $match['target']);
 if (is_callable(array($controller, $action))) {
@@ -30,6 +25,8 @@ if (is_callable(array($controller, $action))) {
     call_user_func_array(array($obj, $action), array($match['params']));
 } else if ($match['target'] == '') {
     echo 'Error: no route was matched';
+    error_log("No routes matched");
 } else {
-    echo 'Error: can not call ' . $controller . '#' . $action;
+    echo 'Error: can not call controller';
+    error_log("Unable to call controller");
 }

@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use Controllers\BaseController;
 use Migrations\TableMigrations;
 
 use Exception;
@@ -10,9 +11,10 @@ use Exception;
  * Initialize Database Connection Here.
  * Database connection properties can be set in the .env file
  */
-class InitDatabase
+class InitDatabase extends BaseController
 {
     private $initializeDb;
+
     function establishCOnnection()
     {
         try {

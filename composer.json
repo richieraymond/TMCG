@@ -13,7 +13,11 @@
             "Config\\": "config/",
             "Models\\": "database/models",
             "Migrations\\": "database/migrations",
-            "Seeders\\": "database/seeders"
+            "Seeders\\": "database/seeders",
+            "UnitTests\\":"unittests"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.3"
     }
 }

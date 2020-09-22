@@ -21,7 +21,7 @@ class StaffSeeder
     public function migrateStaffData()
     {
         try {
-            $curlController = new CurlController("https://api.npoint.io/be71e0bd88ae573f823e");
+            $curlController = new CurlController("https://api.npoint.io/82b00a6230d0e8de0b80");
             $stafflist[] = json_decode($curlController->makeCurlRequest());
             if (sizeof($stafflist) > 0) {
                 foreach (json_decode($stafflist[0]) as $staff) {
@@ -30,6 +30,7 @@ class StaffSeeder
                 }
             }
         } catch (Exception $ex) {
+            error_log($ex->getMessage());
         }
     }
 
@@ -39,20 +40,22 @@ class StaffSeeder
     private function saveStaff($staff)
     {
         try {
-            $sql = "INSERT INTO employees(first_name,last_name,middle_name,start_date) 
-            VALUES(:first_name,:last_name,:middle_name,:start_date)";
+            $sql = "INSERT INTO employees(first_name,last_name,middle_name,start_date,is_at_company) 
+            VALUES(:first_name,:last_name,:middle_name,:start_date,:is_at_company)";
             $createstaff = $this->connectionInstance->prepare($sql);
             if ($createstaff) {
                 $createstaff->bindValue(':first_name', $staff->first_name);
                 $createstaff->bindValue(':last_name', $staff->last_name);
                 $createstaff->bindValue(':middle_name', $staff->middle_name);
                 $createstaff->bindValue(':start_date', $staff->start_date);
+                $createstaff->bindValue(':is_at_company', $staff->is_at_company);
                 $createstaff->execute();
                 return $this->connectionInstance->lastInsertId();
             } else {
                 die("Failed to execute query" . print_r($this->connectionInstance->errorInfo(), true));
             }
         } catch (Exception $ex) {
+            error_log($ex->getMessage());
         }
     }
 
@@ -74,6 +77,7 @@ class StaffSeeder
                 die("Failed to execute query" . print_r($this->connectionInstance->errorInfo(), true));
             }
         } catch (Exception $ex) {
+            error_log($ex->getMessage());
         }
     }
 }

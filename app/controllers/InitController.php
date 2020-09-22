@@ -25,10 +25,10 @@ class InitController extends BaseController
                 $migration->migrateStaffTables();
                 $seeds = new StaffSeeder($connection);
                 $seeds->migrateStaffData();
-                echo "Migration Complete";
             } else {
-                echo "Connection Failed";
+                echo $this->sendResponse(false, "Unable to establish connection", 400);
             }
+
             echo $this->sendResponse(
                 true,
                 'App Inistialization complete',

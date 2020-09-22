@@ -2,3 +2,5 @@ composer.lock
 .env
 front-end/node_modules/
 .history
+front-end/package-lock.json
+front-end/yarn.lock
