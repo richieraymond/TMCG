@@ -1,0 +1,19 @@
+{
+    "name": "illuminate-example/eloquent",
+    "description": "Eloquent Database",
+    "type": "project",
+    "require": {
+        "illuminate/database": "^8.5",
+        "altorouter/altorouter": "^2.0",
+        "vlucas/phpdotenv": "^5.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Controllers\\": "app/controllers/",
+            "Config\\": "config/",
+            "Models\\": "database/models",
+            "Migrations\\": "database/migrations",
+            "Seeders\\": "database/seeders"
+        }
+    }
+}
